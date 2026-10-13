@@ -23,8 +23,7 @@ It does not authorize invocation or guarantee service trustworthiness.
 
 - [Presentation PDF](A3-PS033-TC378-Level1.pdf)
 - [Editable presentation](A3-PS033-TC378-Level1.pptx)
-- Team introduction video: pending upload. Replace this sentence with the actual
-  YouTube viewing link before submission.
+- 
 
 The presentation links assume the two files are uploaded at the repository root.
 Remove the editable-presentation link if only the PDF is uploaded.
