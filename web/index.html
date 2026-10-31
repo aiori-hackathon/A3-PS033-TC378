@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2c2824">
+  <title>DiagDiscover · Discovery Lab</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/experience.css">
+  <link rel="stylesheet" href="/diagnostics.css">
+  <script src="/app.js" defer></script>
+  <script src="/experience.js" defer></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scene-wipe" aria-hidden="true"></div>
+  <header class="topbar"><a class="brand" href="#welcome" aria-label="DiagDiscover home"><span class="brandmark">D<span>·</span></span><span>DIAGDISCOVER<small>AIORI-3 / PS-033</small></span></a><nav aria-label="Main navigation"><a href="#welcome" id="nav-welcome">Overview</a><a href="#lab" id="nav-lab">Laboratory <span>↗</span></a></nav><div class="header-actions"><button id="motion" class="motion-button" aria-pressed="false" title="Pause decorative animations">Pause motion</button><span class="connection" id="connection">Connecting…</span></div></header>
+  <main>
+    <section id="welcome" class="welcome" aria-labelledby="welcome-heading">
+      <div class="cinema-scroll" id="cinema-scroll">
+        <div class="cinema-frame" id="cinema-frame">
+          <div class="landscape" id="landscape" aria-hidden="true"></div>
+          <canvas id="signal-field" aria-hidden="true"></canvas>
+          <div class="cinema-shade" aria-hidden="true"></div>
+          <div class="hero-top"><div><p class="eyebrow">DNS-BASED DIAGNOSTIC DISCOVERY</p><h1 id="welcome-heading" tabindex="-1" class="woven-title">DIAG DISCOVER</h1></div><div class="hero-stats"><p><strong>03</strong><span>DIAGNOSTIC<br>SERVICES</span></p><p><strong>08</strong><span>LABORATORY<br>SCENARIOS</span></p></div></div>
+          <div class="cinema-bottom"><div><p class="hero-kicker">A3-PS033-TC378 / AIORI-3</p><h2>A NEW WAY<br>TO FIND.<br>TO VERIFY.<br>TO CONNECT.</h2><div class="hero-facts"><span>REAL DNS &amp; TLS</span><span>LOCAL TRUST</span><span>LIVE SYSTEM HEALTH</span></div></div><a class="circle-link magnetic" href="#lab" aria-label="Enter the laboratory"><span>ENTER THE<br>LABORATORY</span><span class="circle-arrow">↗</span></a></div>
+          <button class="scroll-invitation" id="scroll-invitation"><span class="scroll-bars" aria-hidden="true">▂▅▃▇▂▆▃▅▂</span> SCROLL TO EXPLORE <span>↓</span></button>
+          <span class="art-disclosure">IMAGINED LANDSCAPE / NETWORK CONCEPT</span>
+        </div>
+      </div>
+      <section class="prologue" id="prologue" aria-labelledby="prologue-title"><p class="eyebrow scroll-reveal">01 / THE IDEA</p><h2 id="prologue-title" class="scroll-reveal">A CONNECTION BEGINS<br>WITH A NAME.<br><em>TRUST COMES NEXT.</em></h2><div class="prologue-bottom scroll-reveal"><span class="asterisk" aria-hidden="true">✳</span><p>Services move. Addresses change. Your client should still find its way. Discover the endpoint through signed DNS, verify its identity, then request access.</p><a class="text-link" href="#lab">EXPERIENCE THE LAB <span>↗</span></a></div></section>
+      <section class="journey" id="journey" aria-labelledby="journey-title"><div class="journey-heading scroll-reveal"><p class="eyebrow">02 / FOLLOW THE SIGNAL</p><h2 id="journey-title">EVERY STEP.<br><em>A REASON TO TRUST.</em></h2><p>Explore the checks before running them.<br>This illustration explains the workflow; it is not a live run.</p></div><div class="journey-content"><div class="journey-map" id="journey-map" aria-hidden="true"><div class="map-rings"></div><span class="map-orbit orbit-a"></span><span class="map-orbit orbit-b"></span><div class="map-core"><span id="map-glyph">01</span><small id="map-label">DISCOVER</small></div><span class="map-node mn-a">CLIENT</span><span class="map-node mn-b">DNS</span><span class="map-node mn-c">SERVICE</span><div class="map-cross cross-a">+</div><div class="map-cross cross-b">+</div></div><div class="journey-steps"><button class="journey-step active" data-step="0" aria-pressed="true"><span>01</span><span>DISCOVER<small>Find the endpoint from signed DNS records.</small></span><i>↗</i></button><button class="journey-step" data-step="1" aria-pressed="false"><span>02</span><span>VERIFY<small>Validate metadata, address and TLS identity.</small></span><i>↗</i></button><button class="journey-step" data-step="2" aria-pressed="false"><span>03</span><span>CONNECT<small>Present a token. Let the service decide.</small></span><i>↗</i></button><p class="journey-explanation" id="journey-explanation" aria-live="polite">Browse the signed local service index. Then inspect its SVCB entries for endpoint hostnames, ports and capabilities.</p></div></div></section>
+      <section class="experience-end scroll-reveal"><p class="eyebrow">03 / YOUR TURN</p><h2>WHAT HAPPENS<br>WHEN TRUST <em>BREAKS?</em></h2><div><p>Alter a DNS record. Send a wrong token.<br>See the exact check that stops the request.</p><a class="circle-link magnetic" href="#lab"><span>OPEN THE<br>LABORATORY</span><span class="circle-arrow">↗</span></a></div></section>
+      <p class="welcome-disclosure">A working local prototype. Real DNS, DNSSEC and HTTPS with provisioned local trust. Live system-health snapshots; latency and traceroute use sample data.</p>
+    </section>
+    <div id="lab-view" hidden>
+    <section class="intro"><div><p class="eyebrow"><span class="live-dot"></span> YOUR DISCOVERY WORKSPACE</p><h1 tabindex="-1" id="lab-heading">Make every check <em>visible.</em></h1><p class="intro-copy">Browse published services. Verify a connection. Read a fresh system-health snapshot.</p></div><aside class="scope"><span class="scope-icon">⌁</span><h2>Real connections. Visible decisions.</h2><p>DNS, DNSSEC and HTTPS run locally.</p><p class="sample-note">Health can use live measurements.<br>Latency and traceroute remain samples.</p></aside></section>
+    <section class="inventory-section" id="inventory-section" aria-labelledby="inventory-heading">
+      <div class="inventory-intro"><div><p class="eyebrow">PUBLISHED / DISCOVERABLE</p><h2 id="inventory-heading">What DNS publishes.</h2><p>Browse the signed service index in this application's <span class="mono">diag.test</span> zone. This reads DNS metadata only; it does not invoke a diagnostic service.</p></div><button id="browse-services" class="quiet" disabled>Browse DNS services <span aria-hidden="true">↗</span></button></div>
+      <p class="inventory-scope">Scope: the managed local test zone. Browsing creates a temporary catalogue; the listed endpoints are not running services. This does not scan your LAN or discover every service on the Internet.</p>
+      <p id="inventory-returned-scope" class="inventory-scope" hidden></p>
+      <div id="inventory-notice" class="inventory-notice" role="status" aria-live="polite">Connect to the local server to browse its published services.</div>
+      <div id="inventory-summary" class="run-summary" hidden></div>
+      <div id="inventory-list" class="inventory-list"></div>
+      <details id="inventory-evidence" hidden><summary>Inspect service-index evidence</summary><p class="muted">An accepted DNS index and service record do not establish TLS identity, access permission, availability or system health. Browsing uses a fresh local catalogue without starting its service endpoints. The next diagnostic run creates its own zone and running services.</p><pre id="inventory-evidence-output"></pre></details>
+    </section>
+    <section class="workspace" aria-label="Run the laboratory">
+      <aside class="controls">
+        <p class="eyebrow">01 / CONFIGURE</p><h2>Your experiment</h2>
+        <label for="service">Diagnostic service</label><select id="service" disabled><option value="all">All three services</option><option value="latency">Latency</option><option value="traceroute">Traceroute</option><option value="health">System health</option></select>
+        <label for="health-mode">Measurement mode</label><select id="health-mode" aria-describedby="health-mode-description" disabled><option value="live">Live system health</option><option value="sample">All sample data</option></select>
+        <p class="mode-description" id="health-mode-description">Health samples the diagnostic service's host once per accepted request. Latency and traceroute stay sample data.</p>
+        <label for="scenario">Scenario</label><select id="scenario" disabled><option>Loading scenarios…</option></select>
+        <p class="scenario-description" id="scenario-description">Connecting to the local Python laboratory.</p>
+        <p id="fault-note" class="muted"></p>
+        <button id="run" class="primary" disabled>Run discovery <span>→</span></button>
+        <div class="demo-sequence"><span class="eyebrow">A GOOD PLACE TO START</span><h3>Test the boundaries.</h3><p>Normal discovery → Tampered DNS → Wrong access token</p><p class="muted">One workflow. Three different outcomes.</p></div>
+      </aside>
+      <div class="results-area">
+        <div class="section-title"><div><p class="eyebrow">02 / OBSERVE</p><h2>Discovery results</h2></div><button class="quiet" id="export" disabled>Export run ↓</button></div>
+        <div id="notice" class="notice" role="status" aria-live="polite">Ready when you are. Choose a scenario and run discovery.</div>
+        <div id="summary" class="run-summary" hidden></div>
+        <div class="services" id="services"></div>
+        <section class="trace-section"><div class="trace-title"><h3 id="trace-heading">Verification path</h3><span id="trace-time" class="mono muted"></span></div><p class="muted" id="trace-description">Each stage runs only if the previous checks allow it.</p><p id="endpoint" class="mono muted"></p><ol id="trace" class="trace"></ol></section>
+        <div class="output-row"><section class="diagnostic"><h3>Diagnostic response <span class="sample-label" id="data-kind">NO RESULT</span></h3><div id="diagnostic-output" class="output-placeholder">An accepted service response appears here, labelled as live or sample data.</div></section><section class="explanation"><p class="eyebrow">WHAT THIS PROVES</p><h3 id="lesson-title">Discovery and access are separate.</h3><p id="lesson-body">A signed record tells the client where to connect. TLS checks the endpoint's identity. The service still decides whether to accept the caller's token.</p></section></div>
+        <details id="evidence"><summary>Inspect DNS records &amp; technical evidence</summary><p class="muted">Published records are shown even when rejected. A published record alone is not evidence of successful verification.</p><pre id="evidence-output">Run the lab to inspect its evidence.</pre></details>
+      </div>
+    </section>
+    </div>
+    <footer><span class="footer-team">A3-PS033-TC378 <span class="divider">/</span> Chris Itty Biju · Alan Jayan Joseph</span><span>Faculty mentor: Revathi BS <span class="divider">/</span> AIORI-3</span></footer>
+  </main>
+</body>
+</html>

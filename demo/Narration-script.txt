@@ -1,0 +1,35 @@
+01-hook
+Your diagnostic service moves. The address saved in your client does not. Suddenly, a routine health check cannot connect. What if the client could discover the current endpoint, and verify it before use?
+
+02-reveal
+This is DiagDiscover. A working prototype for DNS based discovery of diagnostic services. It brings the published endpoint, the security checks, and the diagnostic response into one visible workflow.
+
+03-dns
+Instead of storing every connection detail in the client, a publisher advertises service metadata in a signed DNS test zone. The client reads the service name, protocol, and port when it needs to connect. Our prototype uses a documented DNS-AID-style subset.
+
+04-workflow
+Inside the local laboratory, a publisher, DNS server, discovery client, and three diagnostic services work together. Each experiment creates fresh temporary service endpoints. The client learns their actual ports from the signed records, while the dashboard shows the evidence.
+
+05-catalogue
+Start with the catalogue. It lists the published health, latency, and traceroute services. Each entry includes its advertised endpoint and capability. This browsing step verifies signed metadata only. It does not start those services or collect a diagnostic measurement.
+
+06-normal
+Now choose system health and run normal discovery. The client checks the service record's DNSSEC signature, validates its metadata, and verifies the signed address record. It then checks the HTTPS certificate and hostname before sending the service's access token. Only an accepted request reaches the diagnostic operation.
+
+07-health
+The result is a fresh snapshot of CPU activity, memory usage, and system uptime. The screen records when the measurement was taken and where it came from. In this Docker demonstration, the values describe the environment visible to the diagnostic service, not necessarily Windows Task Manager.
+
+08-tampered
+Now change a DNS record after it has been signed. The first verification stage fails. Later stages do not run, and the client sends no diagnostic request. This is an expected rejection, making the security boundary visible.
+
+09-metadata
+A valid signature is only one part of the decision. Here, the publisher signs metadata that does not match the supported service profile. DNSSEC passes, but the client rejects the metadata. Authentic information can still be unsuitable for this application.
+
+10-access
+Finally, try a wrong access token. The DNS and HTTPS checks succeed, but the service refuses access. Discovery tells the client where to connect. It does not grant permission to use the service. That separation is central to our problem statement.
+
+11-scope
+The DNS queries, digital signatures, HTTPS connections, and token checks are real. Live health measurements are available. Latency and traceroute currently return labelled sample responses. This is a controlled local prototype with provisioned trust, not an Internet-wide discovery service.
+
+12-team
+Built by Chris Itty Biju and Alan Jayan Joseph, with faculty mentor Revathi B S, at Karunya University of Technology and Sciences. DiagDiscover, for AIORI three, problem statement zero three three.

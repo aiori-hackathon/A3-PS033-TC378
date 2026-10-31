@@ -1,0 +1,31 @@
+x-local-runtime: &local-runtime
+  read_only: true
+  init: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  pids_limit: 128
+  mem_limit: 512m
+  cpus: 1.0
+  tmpfs:
+    - /tmp:rw,noexec,nosuid,size=64m,mode=1777
+    - /app/.runtime:rw,noexec,nosuid,size=8m,mode=0700,uid=10001,gid=10001
+services:
+  lab:
+    <<: *local-runtime
+    build: .
+    # The client, DNS listener, and three services share an isolated lab container.
+    # No ports need to be exposed on the host for the self-contained demo.
+    command: ["demo"]
+  dashboard:
+    <<: *local-runtime
+    build: .
+    entrypoint: ["python", "dashboard.py"]
+    command: ["--host", "0.0.0.0", "--port", "8765", "--public-port", "${PS033_DASHBOARD_PORT:-8766}"]
+    ports:
+      - "127.0.0.1:${PS033_DASHBOARD_PORT:-8766}:8765"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8765/api/health', timeout=2).read()"]
+      interval: 15s
+      timeout: 3s
+      start_period: 10s
+      retries: 3

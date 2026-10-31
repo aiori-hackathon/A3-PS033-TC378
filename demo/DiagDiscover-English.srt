@@ -1,0 +1,287 @@
+1
+00:00:00,920 --> 00:00:03,115
+Your diagnostic service moves.
+
+2
+00:00:03,858 --> 00:00:06,440
+The address saved in your client does not.
+
+3
+00:00:07,195 --> 00:00:10,327
+Suddenly, a routine health check cannot connect.
+
+4
+00:00:11,058 --> 00:00:14,225
+What if the client could discover the current endpoint,
+
+5
+00:00:14,245 --> 00:00:16,265
+and verify it before use?
+
+6
+00:00:18,570 --> 00:00:20,202
+This is DiagDiscover.
+
+7
+00:00:20,945 --> 00:00:25,752
+A working prototype for DNS based
+discovery of diagnostic services.
+
+8
+00:00:26,495 --> 00:00:28,715
+It brings the published endpoint,
+
+9
+00:00:28,820 --> 00:00:33,112
+the security checks, and the
+diagnostic response into one visible
+
+10
+00:00:33,132 --> 00:00:33,878
+workflow.
+
+11
+00:00:36,237 --> 00:00:39,694
+Instead of storing every connection detail in the client,
+
+12
+00:00:39,787 --> 00:00:44,042
+a publisher advertises service metadata in a signed DNS test
+
+13
+00:00:44,062 --> 00:00:44,607
+zone.
+
+14
+00:00:45,349 --> 00:00:47,444
+The client reads the service name,
+
+15
+00:00:47,487 --> 00:00:50,569
+protocol, and port when it needs to connect.
+
+16
+00:00:51,324 --> 00:00:55,494
+Our prototype uses a documented DNS-AID-style subset.
+
+17
+00:00:57,837 --> 00:00:59,817
+Inside the local laboratory,
+
+18
+00:00:59,837 --> 00:01:01,967
+a publisher, DNS server,
+
+19
+00:01:01,987 --> 00:01:06,232
+discovery client, and three
+diagnostic services work together.
+
+20
+00:01:06,987 --> 00:01:10,932
+Each experiment creates fresh temporary service endpoints.
+
+21
+00:01:11,674 --> 00:01:15,267
+The client learns their actual ports from the signed records,
+
+22
+00:01:15,287 --> 00:01:17,719
+while the dashboard shows the evidence.
+
+23
+00:01:20,070 --> 00:01:21,740
+Start with the catalogue.
+
+24
+00:01:22,482 --> 00:01:24,265
+It lists the published health,
+
+25
+00:01:24,308 --> 00:01:26,890
+latency, and traceroute services.
+
+26
+00:01:27,633 --> 00:01:31,965
+Each entry includes its advertised endpoint and capability.
+
+27
+00:01:32,708 --> 00:01:36,265
+This browsing step verifies signed metadata only.
+
+28
+00:01:37,020 --> 00:01:40,688
+It does not start those services or collect a diagnostic
+
+29
+00:01:40,708 --> 00:01:41,540
+measurement.
+
+30
+00:01:43,903 --> 00:01:47,223
+Now choose system health and run normal discovery.
+
+31
+00:01:48,016 --> 00:01:52,111
+The client checks the service record's DNSSEC signature,
+
+32
+00:01:52,191 --> 00:01:56,698
+validates its metadata, and
+verifies the signed address record.
+
+33
+00:01:57,441 --> 00:02:01,708
+It then checks the HTTPS certificate
+and hostname before sending
+
+34
+00:02:01,728 --> 00:02:03,686
+the service's access token.
+
+35
+00:02:04,441 --> 00:02:08,523
+Only an accepted request reaches the diagnostic operation.
+
+36
+00:02:10,870 --> 00:02:14,265
+The result is a fresh snapshot of CPU activity,
+
+37
+00:02:14,295 --> 00:02:16,977
+memory usage, and system uptime.
+
+38
+00:02:17,720 --> 00:02:20,912
+The screen records when the measurement was taken and where
+
+39
+00:02:20,932 --> 00:02:21,902
+it came from.
+
+40
+00:02:22,645 --> 00:02:24,627
+In this Docker demonstration,
+
+41
+00:02:24,657 --> 00:02:29,000
+the values describe the environment
+visible to the diagnostic service,
+
+42
+00:02:29,020 --> 00:02:31,790
+not necessarily Windows Task Manager.
+
+43
+00:02:34,137 --> 00:02:37,807
+Now change a DNS record after it has been signed.
+
+44
+00:02:38,574 --> 00:02:41,194
+The first verification stage fails.
+
+45
+00:02:41,937 --> 00:02:43,857
+Later stages do not run,
+
+46
+00:02:43,912 --> 00:02:46,869
+and the client sends no diagnostic request.
+
+47
+00:02:47,612 --> 00:02:49,692
+This is an expected rejection,
+
+48
+00:02:49,712 --> 00:02:52,219
+making the security boundary visible.
+
+49
+00:02:54,570 --> 00:02:58,052
+A valid signature is only one part of the decision.
+
+50
+00:02:58,808 --> 00:03:02,638
+Here, the publisher signs metadata that does not match the
+
+51
+00:03:02,658 --> 00:03:04,478
+supported service profile.
+
+52
+00:03:05,220 --> 00:03:09,478
+DNSSEC passes, but the client rejects the metadata.
+
+53
+00:03:10,220 --> 00:03:14,365
+Authentic information can still be
+unsuitable for this application.
+
+54
+00:03:16,737 --> 00:03:19,582
+Finally, try a wrong access token.
+
+55
+00:03:20,312 --> 00:03:23,307
+The DNS and HTTPS checks succeed,
+
+56
+00:03:23,362 --> 00:03:25,619
+but the service refuses access.
+
+57
+00:03:26,349 --> 00:03:29,194
+Discovery tells the client where to connect.
+
+58
+00:03:29,937 --> 00:03:32,894
+It does not grant permission to use the service.
+
+59
+00:03:33,637 --> 00:03:36,732
+That separation is central to our problem statement.
+
+60
+00:03:39,070 --> 00:03:41,902
+The DNS queries, digital signatures,
+
+61
+00:03:41,932 --> 00:03:45,565
+HTTPS connections, and token checks are real.
+
+62
+00:03:46,308 --> 00:03:48,802
+Live health measurements are available.
+
+63
+00:03:49,545 --> 00:03:54,002
+Latency and traceroute currently
+return labelled sample responses.
+
+64
+00:03:54,758 --> 00:03:58,302
+This is a controlled local prototype with provisioned trust,
+
+65
+00:03:58,370 --> 00:04:00,878
+not an Internet-wide discovery service.
+
+66
+00:04:03,203 --> 00:04:06,673
+Built by Chris Itty Biju and Alan Jayan Joseph,
+
+67
+00:04:06,766 --> 00:04:09,248
+with faculty mentor Revathi BS,
+
+68
+00:04:09,353 --> 00:04:12,986
+at Karunya University of Technology and Sciences.
+
+69
+00:04:13,716 --> 00:04:16,073
+DiagDiscover, for AIORI three,
+
+70
+00:04:16,103 --> 00:04:18,461
+problem statement zero three three.
