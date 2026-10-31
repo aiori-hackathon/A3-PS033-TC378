@@ -108,3 +108,4 @@ def configure_logging() -> logging.Logger:
         if level_name not in _LEVELS:
             logger.warning("Invalid LOG_LEVEL; using INFO")
         return logger
+
